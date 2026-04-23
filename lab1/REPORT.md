@@ -14,7 +14,7 @@ Lab: Lab1
 
 Date of create: 22.04.2026
 
-Date of finished: 22.04.2026
+Date of finished: 23.04.2026
 
 # Лабораторная работа №1
 

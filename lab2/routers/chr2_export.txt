@@ -1,0 +1,33 @@
+# 2026-04-23 20:41:39 by RouterOS 7.20.8
+# system id = CL50ymvO7UJ
+#
+/interface bridge
+add name=loopback0
+/interface ethernet
+set [ find default-name=ether1 ] disable-running-check=no
+set [ find default-name=ether2 ] disable-running-check=no
+/interface wireguard
+add listen-port=20927 mtu=1420 name=wg0
+/port
+set 0 name=serial0
+/routing ospf instance
+add disabled=no name=instance0 router-id=10.100.0.3
+/routing ospf area
+add disabled=no instance=instance0 name=backbone2
+/interface wireguard peers
+add allowed-address=0.0.0.0/0 endpoint-address=82.202.141.34 endpoint-port=\
+    51820 interface=wg0 name=peer1 persistent-keepalive=25s public-key=\
+    "dSQvwLS5eFlOcwkgi+KSFbzJ/S3Dqd3psZAc84LYZHU="
+/ip address
+add address=10.0.0.3/24 interface=wg0 network=10.0.0.0
+add address=10.100.0.3 interface=loopback0 network=10.100.0.3
+/ip dhcp-client
+add interface=ether1
+/ip firewall nat
+add action=masquerade chain=srcnat out-interface=wg0
+/system identity
+set name=chr2
+/system ntp client
+set enabled=yes
+/system ntp client servers
+add address=pool.ntp.org
