@@ -1,0 +1,19 @@
+---
+plugin: netbox.netbox.nb_inventory
+
+api_endpoint: "http://62.233.43.144:8000"
+token: "YTFXSi4Nul2BzUbNiezEmQmVuyqEf71rRyfsPHii"
+validate_certs: false
+
+config_context: true
+interfaces: true
+fetch_all: false
+
+device_query_filters:
+  - role: router
+  - has_primary_ip: 'true'
+
+group_by:
+  - sites
+  - device_roles
+  - platforms

@@ -1,0 +1,10 @@
+commands:
+- /system license print
+
+stdout:
+  - "system-id: CL50ymvO7UJ\n      level: free"
+
+
+stdout_lines:
+  - - 'system-id: CL50ymvO7UJ'
+    - '      level: free'
